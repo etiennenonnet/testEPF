@@ -228,4 +228,11 @@ public class Grille {
             
         }
     }
+    public boolean colonneRemplie(){
+        boolean reponse= false;
+    
+        for (int i=0; i<5;i++){
+            
+        }
+    }
 }
