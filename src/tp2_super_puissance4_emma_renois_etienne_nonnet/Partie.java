@@ -39,7 +39,7 @@ public class Partie {
         }
     }
     
-    public void initialiserPartie(){
+    public Grille initialiserPartie(){
         Grille [] GrilleJeu = new Grille[1];
         if (GrilleJeu[0] != null){
             GrilleJeu[0] = null;
@@ -54,12 +54,32 @@ public class Partie {
             int p = (int)(Math.random() * 6);
             GrilleJeu[0].placerDesintegrateur(o,p);
         }
+        return GrilleJeu[0];
         
         
     }
     
     public void debuterPartie(){
         
+        //preparation de la partie
+        Partie P1 = new Partie();
+        
+        P1.attribuerCouleursAuxJoueurs();
+        int o = (int)(Math.random());
+        String c ="";
+        if(o==0){
+            c="rouge";
+            
+        }else{
+            c ="jaune";//c la couleur tirée au hasard
+        }
+        if(ListeJoueurs[0].Couleur==c){
+            joueurCourant=ListeJoueurs[0];
+        }else{
+            joueurCourant=ListeJoueurs[1];
+        }
+        Grille grilleJeu= new Grille();
+        grilleJeu=P1.initialiserPartie();
         
     }
     
