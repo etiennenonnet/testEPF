@@ -34,7 +34,7 @@ public class TP2_Super_Puissance4_Emma_Renois_Etienne_Nonnet {
         joueur1.affecterCouleur("jaune");
         System.out.println(joueur1.Couleur);
         g1.afficherGrilleSurConsole();
-        System.out.print(g1.etreGagnantePourJoueur(joueur1));
+        System.out.println(g1.etreGagnantePourJoueur(joueur1));
 
     }
     
