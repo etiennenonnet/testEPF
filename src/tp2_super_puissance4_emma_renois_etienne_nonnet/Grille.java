@@ -251,4 +251,12 @@ public class Grille {
         }
         return reponse;
     } 
+    public boolean supprimerJeton(int ligne, int colonne){
+        boolean reponse=false;
+        if (celluleOccupee(ligne,colonne)==true){
+            Cellules[ligne][colonne]=null;
+            reponse=true;
+        }
+        return reponse;
+    }
 }
