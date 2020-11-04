@@ -16,8 +16,9 @@ public class Partie {
         if (x == 0){
             ListeJoueurs[0].affecterCouleur("rouge");
             ListeJoueurs[1].affecterCouleur("jaune");
+            
         }
-        else{
+        else{//como estas ?
             ListeJoueurs[0].affecterCouleur("jaune");
             ListeJoueurs[1].affecterCouleur("rouge");
         }
