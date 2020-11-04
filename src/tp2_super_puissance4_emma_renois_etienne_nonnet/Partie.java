@@ -18,7 +18,7 @@ public class Partie {
             ListeJoueurs[1].affecterCouleur("jaune");
             
         }
-        else{//como estas ?
+        else{
             ListeJoueurs[0].affecterCouleur("jaune");
             ListeJoueurs[1].affecterCouleur("rouge");
         }
@@ -31,7 +31,7 @@ public class Partie {
         }
         int n = (int)(Math.random() * 42);
         for (int i=0; i<5; i++){
-            if (Cellule.presenceTrouNoir() == false){
+            if (Grille.placerTrouNoir() == false){
                 
             }
         }
