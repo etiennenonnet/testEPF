@@ -243,4 +243,12 @@ public class Grille {
         }
         return reponse;
     }
+    public boolean placerTrouNoir(int ligne, int colonne){
+        boolean reponse=false;
+        if (Cellules[ligne][colonne].trouNoir==false){
+            Cellules[ligne][colonne].trouNoir=true;
+            reponse=true;
+        }
+        return reponse;
+    } 
 }
