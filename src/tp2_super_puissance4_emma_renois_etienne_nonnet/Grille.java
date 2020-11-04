@@ -212,5 +212,20 @@ public class Grille {
             }
         return reponse;
     }
-    
+    public void tasserGrille(){
+        for (int i=5; i>0; i--){
+            for (int j=6; i>0; i--){
+                if (celluleOccupee(i,j)==true){
+                    if (celluleOccupee(i,(j-1))==false){
+                        Jeton jeton_a_deplacer = Cellules[i][j].recupererJeton();
+                        Cellules[i][j].supprimerJeton();
+                        Cellules[i][j-1].jetonCourant=ajouterJetonDansColonne(jeton_a_deplacer,(j-1));
+                    }
+                }
+                
+            }
+            
+            
+        }
+    }
 }
