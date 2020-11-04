@@ -251,4 +251,17 @@ public class Grille {
         }
         return reponse;
     } 
+    public boolean placerDesintegrateur(int ligne, int colonne){
+        boolean reponse=false;
+        if (Cellules[ligne][colonne].desintegrateur==false){
+            Cellules[ligne][colonne].desintegrateur=true;
+            reponse=true;
+        }
+        return reponse;
+    }
+    public Jeton recupererJeton(int ligne, int colonne){
+        Jeton a =Cellules[ligne][colonne].jetonCourant;
+        Cellules[ligne][colonne].supprimerJeton();
+        return a;
+    }
 }
