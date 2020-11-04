@@ -210,8 +210,10 @@ public class Grille {
                     }
                 }   
             }
+        }
         return reponse;
     }
+    
     public void tasserGrille(){
         for (int i=5; i>0; i--){
             for (int j=6; i>0; i--){
@@ -219,7 +221,7 @@ public class Grille {
                     if (celluleOccupee(i,(j-1))==false){
                         Jeton jeton_a_deplacer = Cellules[i][j].recupererJeton();
                         Cellules[i][j].supprimerJeton();
-                        Cellules[i][j-1].jetonCourant=ajouterJetonDansColonne(jeton_a_deplacer,(j-1));
+                        Cellules[i][j-1].jetonCourant=jeton_a_deplacer;
                     }
                 }
                 
