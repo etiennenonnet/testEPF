@@ -25,19 +25,19 @@ public class Partie {
     }
     
     public void initialiserPartie(){
-        Grille GrilleJeu = new Grille();
-        if (GrilleJeu != null){
-            GrilleJeu = null;
+        Grille [] GrilleJeu = new Grille[1];
+        if (GrilleJeu[0] != null){
+            GrilleJeu[0] = null;
         }
-        int n = (int)(Math.random() * 5);
-        int m = (int)(Math.random() * 6);
         for (int i=0; i<5; i++){
-            GrilleJeu.placerTrouNoir(n,m);  
+            int n = (int)(Math.random() * 5);
+            int m = (int)(Math.random() * 6);
+            GrilleJeu[0].placerTrouNoir(n,m);  
         }
-        int o = (int)(Math.random() * 5);
-        int p = (int)(Math.random() * 6);
         for (int i=0; i<5; i++){
-            GrilleJeu.placerDesintegrateur(o,p);
+            int o = (int)(Math.random() * 5);
+            int p = (int)(Math.random() * 6);
+            GrilleJeu[0].placerDesintegrateur(o,p);
     }
         
     }
