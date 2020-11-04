@@ -230,11 +230,17 @@ public class Grille {
             
         }
     }
-    public boolean colonneRemplie(){
+    public boolean colonneRemplie(int colonne_vise){
         boolean reponse= false;
-    
-        for (int i=0; i<5;i++){
-            
+        int a=0;
+        for (int i=0; i<6;i++){//on parcourt une colonne
+            if(Cellules[i][colonne_vise].lireCouleurDuJeton().equals("rouge")|Cellules[i][colonne_vise].lireCouleurDuJeton().equals("jaune")){//si les cellules sont toute rouge ou jaunes
+                a+=1;
+            }
         }
+        if (a==6){//si toute la colonne est remplit
+            reponse= true;
+        }
+        return reponse;
     }
 }
