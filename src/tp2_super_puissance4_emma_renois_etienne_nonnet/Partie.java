@@ -66,20 +66,20 @@ public class Partie {
         
         P1.attribuerCouleursAuxJoueurs();
         int o = (int)(Math.random());
-        String c ="";
+        String c;
         if(o==0){
             c="rouge";
             
         }else{
             c ="jaune";//c la couleur tirée au hasard
         }
-        if(ListeJoueurs[0].Couleur==c){
+        if(ListeJoueurs[0].Couleur.equals(c)){
             joueurCourant=ListeJoueurs[0];
         }else{
             joueurCourant=ListeJoueurs[1];
         }
-        Grille grilleJeu= new Grille();
-        grilleJeu=P1.initialiserPartie();
+        Grille GrilleJeu= new Grille();
+        GrilleJeu=P1.initialiserPartie();
         
     }
     
