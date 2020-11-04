@@ -29,12 +29,16 @@ public class Partie {
         if (GrilleJeu[0] != null){
             GrilleJeu[0] = null;
         }
-        int n = (int)(Math.random() * 42);
+        int n = (int)(Math.random() * 5);
+        int m = (int)(Math.random() * 6);
         for (int i=0; i<5; i++){
-            if (Grille.placerTrouNoir() == false){
-                
-            }
+            GrilleJeu[0].placerTrouNoir(n,m);  
         }
+        int o = (int)(Math.random() * 5);
+        int p = (int)(Math.random() * 6);
+        for (int i=0; i<5; i++){
+            GrilleJeu[0].placerDesintegrateur(o,p);
+    }
         
     }
     
