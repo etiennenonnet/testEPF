@@ -217,11 +217,11 @@ public class Grille {
     public void tasserGrille(){
         for (int i=5; i>0; i--){
             for (int j=6; i>0; i--){
-                if (celluleOccupee(i,j)==true){
-                    if (celluleOccupee(i,(j-1))==false){
-                        Jeton jeton_a_deplacer = Cellules[i][j].recupererJeton();
-                        Cellules[i][j].supprimerJeton();
-                        Cellules[i][j-1].jetonCourant=jeton_a_deplacer;
+                if (celluleOccupee(i,j)==true){//regarde si la cellule contient un jeton. Si oui, regarde si la cellule d'en dessous contient également un jeton
+                    if (celluleOccupee(i,(j-1))==false){// si non :
+                        Jeton jeton_a_deplacer = Cellules[i][j].recupererJeton();// prend le jeton de la cellule
+                        Cellules[i][j].supprimerJeton();// vide la cellule
+                        Cellules[i][j-1].jetonCourant=jeton_a_deplacer;// place le jeton dans la cellule d'en dessous
                     }
                 }
                 
