@@ -82,6 +82,7 @@ public class Grille {
             }
             
         }
+        
     }
     public boolean celluleOccupee(int ligne_donnée ,int colonne_donnée){
         boolean reponse= false;

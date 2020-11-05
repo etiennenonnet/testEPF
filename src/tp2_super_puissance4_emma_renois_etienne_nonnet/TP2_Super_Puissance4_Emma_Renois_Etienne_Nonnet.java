@@ -29,11 +29,35 @@ public class TP2_Super_Puissance4_Emma_Renois_Etienne_Nonnet {
         Joueur Joueur2 = new Joueur (y);
         System.out.println("Le Joueur2 s'appelle : "+Joueur2.Nom+"\n");
         
+        Partie P1 = new Partie();
+        P1.initialiserPartie().afficherGrilleSurConsole();
+        P1.attribuerCouleursAuxJoueurs(Joueur1, Joueur2);
+        System.out.println("\n"+"la couleur du joueur 1 est: "+Joueur1.Couleur);
+        System.out.println("la couleur du joueur 2 est: "+Joueur2.Couleur);
+        //on tire une couleur au hasard pour savoir qui commance:
+        double n = Math.random();
+        int a = (int)n;
+        a = (int)(Math.random()*2);
+        String couleurTire;
+        if(a==0){
+            couleurTire="rouge";
+            
+        }else{
+            couleurTire="jaune";
+        }
+        System.out.println(couleurTire);
+        int b=2;//si c'est le joueur 2 qui commence b=2
+        if(couleurTire==Joueur1.Couleur){
+            b=1;//sinon b=1
+        }
+        System.out.println("le premier joueur a jouer sera le joueur "+b);
+        //la partie commence
+        
         // Main du code (relit toutes les classes entre elles)
-        Jeton j1 = new Jeton("rouge");
+        //Jeton j1 = new Jeton("rouge");
         //System.out.println(j1.lireCouleur());
-        Joueur joueur1 = new Joueur("Etienne");
-        Cellule c1 = new Cellule();
+        //Joueur joueur1 = new Joueur("Etienne");
+        //Cellule c1 = new Cellule();
         //System.out.println(c1.affecterJeton(j1));
         
         
@@ -42,14 +66,14 @@ public class TP2_Super_Puissance4_Emma_Renois_Etienne_Nonnet {
         //System.out.println(c1.recupererDesintegrateur());
         //System.out.println(c1.presenceTrouNoir());
         //System.out.println(c1.activerTrouNoir());
-        Grille g1 = new Grille();
-        System.out.println(g1.ajouterJetonDansColonne(j1, 0));
-        System.out.println(g1.etreRemplie());
-        System.out.println(g1.lireCouleurDuJeton(5,0));
-        joueur1.affecterCouleur("jaune");
-        System.out.println(joueur1.Couleur);
-        g1.afficherGrilleSurConsole();
-        System.out.println(g1.etreGagnantePourJoueur(joueur1));
+        //Grille g1 = new Grille();
+        //System.out.println(g1.ajouterJetonDansColonne(j1, 0));
+        //System.out.println(g1.etreRemplie());
+        //System.out.println(g1.lireCouleurDuJeton(5,0));
+        //joueur1.affecterCouleur("jaune");
+        //System.out.println(joueur1.Couleur);
+        //g1.afficherGrilleSurConsole();
+        //System.out.println(g1.etreGagnantePourJoueur(joueur1));
 
     }
     

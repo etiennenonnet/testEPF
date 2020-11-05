@@ -11,8 +11,13 @@ public class Partie {
     Joueur[] ListeJoueurs = new Joueur[2];
     Joueur joueurCourant;
     
-    public void attribuerCouleursAuxJoueurs(){
-        double x = Math.random();
+    public void attribuerCouleursAuxJoueurs(Joueur LeJoueur1, Joueur LeJoueur2){
+        
+        double n = Math.random();
+        int x = (int)n;
+        x = (int)(Math.random()*2);
+        ListeJoueurs[0]=LeJoueur1;
+        ListeJoueurs[1]=LeJoueur2;
         if (x == 0){
             ListeJoueurs[0].affecterCouleur("rouge");
             for (int i=0; i<21; i++){
@@ -40,21 +45,21 @@ public class Partie {
     }
     
     public Grille initialiserPartie(){
-        Grille [] GrilleJeu = new Grille[1];
-        if (GrilleJeu[0] != null){
-            GrilleJeu[0] = null;
+        Grille GrilleJeu = new Grille();
+        if (GrilleJeu != null){
+            GrilleJeu.viderGrille();
         }
         for (int i=0; i<5; i++){
             int n = (int)(Math.random() * 5);
             int m = (int)(Math.random() * 6);
-            GrilleJeu[0].placerTrouNoir(n,m);  
+            GrilleJeu.placerTrouNoir(n,m);  
         }
         for (int i=0; i<5; i++){
             int o = (int)(Math.random() * 5);
             int p = (int)(Math.random() * 6);
-            GrilleJeu[0].placerDesintegrateur(o,p);
+            GrilleJeu.placerDesintegrateur(o,p);
         }
-        return GrilleJeu[0];
+        return GrilleJeu;
         
         
     }
