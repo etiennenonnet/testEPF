@@ -30,9 +30,10 @@ public class TP2_Super_Puissance4_Emma_Renois_Etienne_Nonnet {
         //System.out.println("Le Joueur2 s'appelle : "+Joueur2.Nom+"\n");
         
         Partie P1 = new Partie();
-        P1.initialiserPartie().afficherGrilleSurConsole();
+        //P1.initialiserPartie().afficherGrilleSurConsole();
         Grille GrilleDeJeu = new Grille();
         GrilleDeJeu=P1.initialiserPartie();
+        GrilleDeJeu.afficherGrilleSurConsole();
         P1.attribuerCouleursAuxJoueurs(Joueur1, Joueur2);
         System.out.println("\n"+"la couleur de "+Joueur1.Nom+" est: "+Joueur1.Couleur);
         System.out.println("la couleur de "+Joueur2.Nom +" est: "+Joueur2.Couleur);
