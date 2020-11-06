@@ -20,7 +20,7 @@ public class Grille {
     public boolean ajouterJetonDansColonne(Jeton jeton_a_ajouter, int une_colonne){
         boolean reponse=false;//si le module ne renvoit rien c'est qu'il n'a pas marché
         int a;
-        for(int i=0; i<5;i++){
+        for(int i=0; i<=5;i++){
             a=5-i;//on demarre de la cellule la plus basse de la colonne
             //Cellule c = Cellules[i][une_colonne];
             if (Cellules[a][une_colonne].jetonCourant==null){//si la cellule contient le jeton nul
@@ -174,11 +174,11 @@ public class Grille {
             }
         }
         //y=x
-        for(int i=0; i<7;i++){//on parcourt la premiere ligne de droite à gauche
-            i=6-i;
+        for(int i=6; i>=0;i--){//on parcourt la premiere ligne de droite à gauche
+            
             int a=0;
             for (int k=0; k<6; k++){//k inférieur on nombre de ligne
-                if((i-k)<7 & (i-k)>0){
+                if((i-k)<7 & (i-k)>=0){
                     if (Cellules[k][i-k].lireCouleurDuJeton().equals(CouleurDuJoueur)){
                         a+=1;
 
@@ -197,7 +197,7 @@ public class Grille {
             //i parcourt les lignes de la derniere colonne
             int a=0;
             for (int k=0; k<6; k++){
-                if((i+k)<6 & (i+k)>0){
+                if((i+k)<6 & (i+k)>=0){
                     if (Cellules[i+k][6-k].lireCouleurDuJeton().equals(CouleurDuJoueur)){//commence à la derniere colonne colonne=6
                         a+=1;
 

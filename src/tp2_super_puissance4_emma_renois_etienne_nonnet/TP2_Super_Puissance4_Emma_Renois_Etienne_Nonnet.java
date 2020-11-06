@@ -17,14 +17,14 @@ public class TP2_Super_Puissance4_Emma_Renois_Etienne_Nonnet {
     public static void main(String[] args) {
         String x;
         Scanner sc = new Scanner (System.in);
-        System.out.println("Entrer nom Joueur1 : ");
+        System.out.println("Entrer le nom du premier joueur : ");
         x = sc.next();
         Joueur Joueur1 = new Joueur (x);
         //System.out.println("Le Joueur1 s'appelle : "+Joueur1.Nom+"\n");
         
         String y;
         Scanner sc2 = new Scanner (System.in);
-        System.out.println("Entrer nom Joueur2 : ");
+        System.out.println("Entrer le nom du deuxieme joueur : ");
         y = sc2.next();
         Joueur Joueur2 = new Joueur (y);
         //System.out.println("Le Joueur2 s'appelle : "+Joueur2.Nom+"\n");
@@ -76,11 +76,25 @@ public class TP2_Super_Puissance4_Emma_Renois_Etienne_Nonnet {
             
             System.out.println("\n Dans quel colonne ajoutez vous votre jeton ? ");
             g = sc3.nextInt()-1;
+            if (GrilleDeJeu.etreRemplie()==true){
+                System.out.println("match nul serrez vous la main");
+                break;
+            }
+            while (GrilleDeJeu.colonneRemplie(g)==true){
+                System.out.println("cette colonne est pleine, ou voulez vous placer votre jeton ? ");
+                g = sc3.nextInt()-1;
+            }
             Jeton JetonCourant = new Jeton(couleurTire);
 
             GrilleDeJeu.ajouterJetonDansColonne(JetonCourant, g);
             GrilleDeJeu.afficherGrilleSurConsole();
             
+            
+        }
+        if(GrilleDeJeu.etreGagnantePourJoueur(Joueur1)==true){
+            System.out.println(Joueur1.Nom+" à gagné, bravo à tous !");
+        }else{
+            System.out.println(Joueur2.Nom+" à gagné, bravo à tous !");
         }
         // Main du code (relit toutes les classes entre elles)
         //Jeton j1 = new Jeton("rouge");
