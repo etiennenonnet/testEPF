@@ -11,6 +11,7 @@ public class Partie {
     Joueur[] ListeJoueurs = new Joueur[2];
     Joueur joueurCourant;
     
+    
     public void attribuerCouleursAuxJoueurs(Joueur LeJoueur1, Joueur LeJoueur2){
         
         double n = Math.random();

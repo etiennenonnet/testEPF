@@ -20,20 +20,22 @@ public class TP2_Super_Puissance4_Emma_Renois_Etienne_Nonnet {
         System.out.println("Entrer nom Joueur1 : ");
         x = sc.next();
         Joueur Joueur1 = new Joueur (x);
-        System.out.println("Le Joueur1 s'appelle : "+Joueur1.Nom+"\n");
+        //System.out.println("Le Joueur1 s'appelle : "+Joueur1.Nom+"\n");
         
         String y;
         Scanner sc2 = new Scanner (System.in);
         System.out.println("Entrer nom Joueur2 : ");
         y = sc2.next();
         Joueur Joueur2 = new Joueur (y);
-        System.out.println("Le Joueur2 s'appelle : "+Joueur2.Nom+"\n");
+        //System.out.println("Le Joueur2 s'appelle : "+Joueur2.Nom+"\n");
         
         Partie P1 = new Partie();
         P1.initialiserPartie().afficherGrilleSurConsole();
+        Grille GrilleDeJeu = new Grille();
+        GrilleDeJeu=P1.initialiserPartie();
         P1.attribuerCouleursAuxJoueurs(Joueur1, Joueur2);
-        System.out.println("\n"+"la couleur du joueur 1 est: "+Joueur1.Couleur);
-        System.out.println("la couleur du joueur 2 est: "+Joueur2.Couleur);
+        System.out.println("\n"+"la couleur de "+Joueur1.Nom+" est: "+Joueur1.Couleur);
+        System.out.println("la couleur de "+Joueur2.Nom +" est: "+Joueur2.Couleur);
         //on tire une couleur au hasard pour savoir qui commance:
         double n = Math.random();
         int a = (int)n;
@@ -46,13 +48,40 @@ public class TP2_Super_Puissance4_Emma_Renois_Etienne_Nonnet {
             couleurTire="jaune";
         }
         System.out.println(couleurTire);
-        int b=2;//si c'est le joueur 2 qui commence b=2
-        if(couleurTire==Joueur1.Couleur){
-            b=1;//sinon b=1
-        }
-        System.out.println("le premier joueur a jouer sera le joueur "+b);
-        //la partie commence
         
+        if(couleurTire==Joueur1.Couleur){//si la couleur tire est celle du joueur 1
+            
+            System.out.println("le premier joueur a jouer sera "+Joueur1.Nom);//il joura en premier
+        }else{
+            System.out.println("le premier joueur a jouer sera "+Joueur2.Nom);//sinon c'est le joueur 2 qui commence
+        }
+        //la partie commence
+        int g;
+        Scanner sc3 = new Scanner (System.in);
+        System.out.println("Dans quel colonne voulez-vous ajoutez un jeton ? ");
+        g = sc3.nextInt()-1;
+        
+        Jeton premierJeton = new Jeton(couleurTire);
+        
+        GrilleDeJeu.ajouterJetonDansColonne(premierJeton, g);
+        GrilleDeJeu.afficherGrilleSurConsole();
+        while(GrilleDeJeu.etreGagnantePourJoueur(Joueur1)==false & GrilleDeJeu.etreGagnantePourJoueur(Joueur2)==false){//tant que personne ne gagne
+            //si la premiere couleur a jouer etait le rouge la suivant sera le jaune et ainsi de suite
+            if (couleurTire=="jaune"){
+                couleurTire="rouge";
+            }else{
+                couleurTire="jaune";
+            }
+            
+            
+            System.out.println("\n Dans quel colonne ajoutez vous votre jeton ? ");
+            g = sc3.nextInt()-1;
+            Jeton JetonCourant = new Jeton(couleurTire);
+
+            GrilleDeJeu.ajouterJetonDansColonne(JetonCourant, g);
+            GrilleDeJeu.afficherGrilleSurConsole();
+            
+        }
         // Main du code (relit toutes les classes entre elles)
         //Jeton j1 = new Jeton("rouge");
         //System.out.println(j1.lireCouleur());
