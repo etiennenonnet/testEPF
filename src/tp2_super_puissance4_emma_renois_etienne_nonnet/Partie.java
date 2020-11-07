@@ -147,7 +147,7 @@ public class Partie {
                 }
             }
             
-            System.out.println("\n"p+" a vous de jouer, que voulez-vous faire ?");
+            System.out.println("\n"+p+" a vous de jouer, que voulez-vous faire ?");
             
             int rep = choix();
             if (rep == 1){
