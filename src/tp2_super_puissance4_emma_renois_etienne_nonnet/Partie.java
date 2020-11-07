@@ -99,15 +99,16 @@ public class Partie {
         }
         if(ListeJoueurs[0].Couleur.equals(c)){
             joueurCourant=ListeJoueurs[0];
+            System.out.println ("\n"+Joueur1.Nom+" commence avec la couleur "+c+" : ");
         }else{
             joueurCourant=ListeJoueurs[1];
+            System.out.println ("\n"+Joueur2.Nom+" commence avec la couleur "+c+" : ");
         }
         
-        System.out.println ("\n"+"Le joueur "+c+" commence: ");
         
         int g;
         Scanner sc3 = new Scanner (System.in);
-        System.out.println("Dans quel colonne voulez-vous ajoutez un jeton ? ");
+        System.out.println("Dans quel colonne voulez-vous ajoutez votre jeton ? ");
         g = sc3.nextInt()-1;
         
         Jeton premierJeton = new Jeton(c);
@@ -116,21 +117,34 @@ public class Partie {
         GrilleJeu.afficherGrilleSurConsole();
         while(GrilleJeu.etreGagnantePourJoueur(Joueur1)==false & GrilleJeu.etreGagnantePourJoueur(Joueur2)==false){//tant que personne ne gagne
             //si la premiere couleur a jouer etait le rouge la suivant sera le jaune et ainsi de suite
+            String p;
             if ("jaune".equals(c)){
                 c="rouge";
-            }else{
+                if(ListeJoueurs[0].Couleur.equals(c)){
+                    p = Joueur1.Nom;
+                }
+                else{
+                    p = Joueur2.Nom;
+                }
+            }
+            else{
                 c="jaune";
+                if(ListeJoueurs[0].Couleur.equals(c)){
+                    p = Joueur1.Nom;
+                }
+                else{
+                    p = Joueur2.Nom;
+                }
             }
             
             
-            System.out.println("\n Dans quel colonne ajoutez vous votre jeton ? ");
+            System.out.println("\n"+p+" Dans quel colonne ajoutez vous votre jeton "+c+" ?");
             g = sc3.nextInt()-1;
             if (GrilleJeu.etreRemplie()==true){
                 System.out.println("match nul serrez vous la main");
-                break;
             }
             while (GrilleJeu.colonneRemplie(g)==true){
-                System.out.println("cette colonne est pleine, ou voulez vous placer votre jeton ? ");
+                System.out.println("Cette colonne est pleine ! Ou voulez vous placer votre jeton ? ");
                 g = sc3.nextInt()-1;
             }
             Jeton JetonCourant = new Jeton(c);
@@ -141,9 +155,9 @@ public class Partie {
             
         }
         if(GrilleJeu.etreGagnantePourJoueur(Joueur1)==true){
-            System.out.println(Joueur1.Nom+" à gagné, bravo à tous !");
+            System.out.println("\n"+Joueur1.Nom+" à gagné, bravo à tous !");
         }else{
-            System.out.println(Joueur2.Nom+" à gagné, bravo à tous !");
+            System.out.println("\n"+Joueur2.Nom+" à gagné, bravo à tous !");
         }
         
        
