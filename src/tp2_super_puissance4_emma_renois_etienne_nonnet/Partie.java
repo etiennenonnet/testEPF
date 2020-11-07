@@ -19,8 +19,8 @@ public class Partie {
         String r = "rouge";
         String j = "jaune";
         Random generateurAleat = new Random();
-        int x = generateurAleat.nextInt(1);
-        if (x == 0){
+        int x = generateurAleat.nextInt(2);
+        if (x == 1){
             ListeJoueurs[0].affecterCouleur(r);
             for (int i=0; i<21; i++){
                 Jeton J1 = new Jeton(r);
@@ -33,7 +33,7 @@ public class Partie {
             }
             System.out.println("Le Joueur1 est rouge et le Joueur2 est jaune");
         }
-        else if (x == 1){
+        else{
             ListeJoueurs[0].affecterCouleur(j);
             for (int i=0; i<21; i++){
                 Jeton J1 = new Jeton(j);
@@ -61,9 +61,18 @@ public class Partie {
             int p = (int)(Math.random() * 6);
             GrilleJeu.placerDesintegrateur(o,p);
         }
-        return GrilleJeu;
-        
-        
+        return GrilleJeu;  
+    }
+    
+    public static int choix(){
+        // On demande à l'utilisateur de choisir entre recuperer un jeton ou jouer.
+        int rep;
+        Scanner sc = new Scanner (System.in);
+        System.out.println("\n Saisissez le nombre correspondant a votre choix :");
+        System.out.println("1) Jouer un jeton");
+        System.out.println("2) Recuperer un jeton");
+        rep = sc.nextInt();
+        return rep;
     }
     
     public void debuterPartie(){
@@ -89,9 +98,10 @@ public class Partie {
         attribuerCouleursAuxJoueurs();
         Grille GrilleJeu = new Grille();
         GrilleJeu.afficherGrilleSurConsole();
-        int o = (int)(Math.random());
+        Random couleur = new Random();
+        int o = couleur.nextInt(2);
         String c;
-        if(o==0){
+        if(o==1){
             c="rouge";
             
         }else{
@@ -137,9 +147,29 @@ public class Partie {
                 }
             }
             
+            System.out.println("\n"p+" a vous de jouer, que voulez-vous faire ?");
             
-            System.out.println("\n"+p+" Dans quel colonne ajoutez vous votre jeton "+c+" ?");
-            g = sc3.nextInt()-1;
+            int rep = choix();
+            if (rep == 1){
+                System.out.println("\n"+p+" Dans quel colonne ajoutez vous votre jeton "+c+" ?");
+                g = sc3.nextInt()-1;
+            }
+            if (rep == 2){
+                Scanner ligne = new Scanner(System.in);
+                int a;
+                System.out.println("Quel jeton voulez-vous receperer?");
+                System.out.println("Veuillez indiquer la ligne correspondante :");
+                a = ligne.nextInt();
+                
+                Scanner colonne = new Scanner(System.in);
+                int b;
+                System.out.println("Veuiller indiquer la colonne correspondante :");
+                b = colonne.nextInt();
+                
+                GrilleJeu.recupererJeton(a, b);
+                
+                System.out.println("Vous venez de récuperer le jetont de coordonnées ["+a+", "+b+"]");
+            }
             if (GrilleJeu.etreRemplie()==true){
                 System.out.println("match nul serrez vous la main");
             }
@@ -159,6 +189,9 @@ public class Partie {
         }else{
             System.out.println("\n"+Joueur2.Nom+" à gagné, bravo à tous !");
         }
+        
+        
+        
         
        
     }
