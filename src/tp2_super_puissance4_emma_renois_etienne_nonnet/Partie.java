@@ -48,9 +48,7 @@ public class Partie {
     
     public Grille initialiserPartie(){
         Grille GrilleJeu = new Grille();
-        if (GrilleJeu != null){
             GrilleJeu.viderGrille();
-        }
         for (int i=0; i<5; i++){
             int n = (int)(Math.random() * 5);
             int m = (int)(Math.random() * 6);
@@ -103,8 +101,49 @@ public class Partie {
         }else{
             joueurCourant=ListeJoueurs[1];
         }
+        
         System.out.println ("Le joueur "+c+" commence: ");
         
+        int g;
+        Scanner sc3 = new Scanner (System.in);
+        System.out.println("Dans quel colonne voulez-vous ajoutez un jeton ? ");
+        g = sc3.nextInt()-1;
+        
+        Jeton premierJeton = new Jeton(c);
+        
+        GrilleJeu.ajouterJetonDansColonne(premierJeton, g);
+        GrilleJeu.afficherGrilleSurConsole();
+        while(GrilleJeu.etreGagnantePourJoueur(Joueur1)==false & GrilleJeu.etreGagnantePourJoueur(Joueur2)==false){//tant que personne ne gagne
+            //si la premiere couleur a jouer etait le rouge la suivant sera le jaune et ainsi de suite
+            if ("jaune".equals(c)){
+                c="rouge";
+            }else{
+                c="jaune";
+            }
+            
+            
+            System.out.println("\n Dans quel colonne ajoutez vous votre jeton ? ");
+            g = sc3.nextInt()-1;
+            if (GrilleJeu.etreRemplie()==true){
+                System.out.println("match nul serrez vous la main");
+                break;
+            }
+            while (GrilleJeu.colonneRemplie(g)==true){
+                System.out.println("cette colonne est pleine, ou voulez vous placer votre jeton ? ");
+                g = sc3.nextInt()-1;
+            }
+            Jeton JetonCourant = new Jeton(c);
+
+            GrilleJeu.ajouterJetonDansColonne(JetonCourant, g);
+            GrilleJeu.afficherGrilleSurConsole();
+            
+            
+        }
+        if(GrilleJeu.etreGagnantePourJoueur(Joueur1)==true){
+            System.out.println(Joueur1.Nom+" à gagné, bravo à tous !");
+        }else{
+            System.out.println(Joueur2.Nom+" à gagné, bravo à tous !");
+        }
         
        
     }
