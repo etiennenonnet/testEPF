@@ -3,6 +3,7 @@
  */
 package tp2_super_puissance4_emma_renois_etienne_nonnet;
 
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -17,7 +18,8 @@ public class Partie {
     public void attribuerCouleursAuxJoueurs(){
         String r = "rouge";
         String j = "jaune";
-        double x = Math.random();
+        Random generateurAleat = new Random();
+        int x = generateurAleat.nextInt(1);
         if (x == 0){
             ListeJoueurs[0].affecterCouleur(r);
             for (int i=0; i<21; i++){
@@ -67,8 +69,7 @@ public class Partie {
     public void debuterPartie(){
         
         //preparation de la partie
-        Partie P1 = new Partie();
-        P1.initialiserPartie();
+        initialiserPartie();
         
         String x;
         Scanner sc = new Scanner (System.in);
@@ -85,7 +86,7 @@ public class Partie {
         Joueur Joueur2 = new Joueur(y);
         ListeJoueurs[1] = Joueur2;
         //System.out.println("Le Joueur2 s'appelle : "+Joueur2.Nom+"\n");
-        P1.attribuerCouleursAuxJoueurs();
+        attribuerCouleursAuxJoueurs();
         Grille GrilleJeu = new Grille();
         GrilleJeu.afficherGrilleSurConsole();
         int o = (int)(Math.random());
@@ -102,7 +103,7 @@ public class Partie {
             joueurCourant=ListeJoueurs[1];
         }
         
-        System.out.println ("Le joueur "+c+" commence: ");
+        System.out.println ("\n"+"Le joueur "+c+" commence: ");
         
         int g;
         Scanner sc3 = new Scanner (System.in);
