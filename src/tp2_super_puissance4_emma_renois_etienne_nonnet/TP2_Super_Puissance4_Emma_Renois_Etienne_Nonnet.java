@@ -15,21 +15,11 @@ public class TP2_Super_Puissance4_Emma_Renois_Etienne_Nonnet {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String x;
-        Scanner sc = new Scanner (System.in);
-        System.out.println("Entrer le nom du premier joueur : ");
-        x = sc.next();
-        Joueur Joueur1 = new Joueur (x);
-        //System.out.println("Le Joueur1 s'appelle : "+Joueur1.Nom+"\n");
-        
-        String y;
-        Scanner sc2 = new Scanner (System.in);
-        System.out.println("Entrer le nom du deuxieme joueur : ");
-        y = sc2.next();
-        Joueur Joueur2 = new Joueur (y);
-        //System.out.println("Le Joueur2 s'appelle : "+Joueur2.Nom+"\n");
-        
         Partie P1 = new Partie();
+        P1.debuterPartie();
+    }
+        
+        /*Partie P1 = new Partie();
         //P1.initialiserPartie().afficherGrilleSurConsole();
         Grille GrilleDeJeu = new Grille();
         GrilleDeJeu=P1.initialiserPartie();
@@ -119,6 +109,6 @@ public class TP2_Super_Puissance4_Emma_Renois_Etienne_Nonnet {
         //g1.afficherGrilleSurConsole();
         //System.out.println(g1.etreGagnantePourJoueur(joueur1));
 
-    }
+    }*/
     
 }
