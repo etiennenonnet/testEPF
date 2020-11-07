@@ -284,7 +284,7 @@ public class Grille {
             }
         }
         else {
-            System.out.println("Cette cellule est vide, choisis une cellule pleine");
+            System.out.println("Cette cellule est vide, choisis une cellule avec ton jeton");
         }
         return jeton_a_recuperer;
     }
