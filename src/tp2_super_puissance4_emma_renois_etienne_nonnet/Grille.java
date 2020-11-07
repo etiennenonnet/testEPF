@@ -271,8 +271,21 @@ public class Grille {
         return reponse;
     }
     public Jeton recupererJeton(int ligne, int colonne){
-        Jeton a =Cellules[ligne][colonne].jetonCourant;
-        Cellules[ligne][colonne].supprimerJeton();
-        return a;
+        Partie P1 = new Partie();
+        Jeton jeton_a_recuperer = null;
+        if (celluleOccupee (ligne,colonne)==true){
+            if(Cellules[ligne][colonne].jetonCourant.Couleur.equals(P1.joueurCourant.Couleur)){
+                jeton_a_recuperer = Cellules[ligne][colonne].recupererJeton();
+                Cellules[ligne][colonne].supprimerJeton();
+                P1.joueurCourant.nombreJetonsrestants += 1;
+            }
+            else{
+                System.out.println("Ce jeton n'est pas a toi ! Choisis un jeton de ta couleur");
+            }
+        }
+        else {
+            System.out.println("Cette cellule est vide, choisis une cellule pleine");
+        }
+        return jeton_a_recuperer;
     }
 }

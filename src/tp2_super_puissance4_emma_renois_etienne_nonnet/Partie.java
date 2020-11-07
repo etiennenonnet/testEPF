@@ -68,7 +68,7 @@ public class Partie {
         // On demande à l'utilisateur de choisir entre recuperer un jeton ou jouer.
         int rep;
         Scanner sc = new Scanner (System.in);
-        System.out.println("\n Saisissez le nombre correspondant a votre choix :");
+        System.out.println("Saisissez le nombre correspondant a votre choix :");
         System.out.println("1) Jouer un jeton");
         System.out.println("2) Recuperer un jeton");
         rep = sc.nextInt();
@@ -155,20 +155,25 @@ public class Partie {
                 g = sc3.nextInt()-1;
             }
             if (rep == 2){
-                Scanner ligne = new Scanner(System.in);
-                int a;
-                System.out.println("Quel jeton voulez-vous receperer?");
-                System.out.println("Veuillez indiquer la ligne correspondante :");
-                a = ligne.nextInt();
+                int reponse = 0;
+                while (reponse == 0){
+                    Scanner ligne = new Scanner(System.in);
+                    int a;
+                    System.out.println("Quel jeton voulez-vous recuperer?");
+                    System.out.println("Veuillez indiquer la ligne correspondante :");
+                    a = ligne.nextInt();
                 
-                Scanner colonne = new Scanner(System.in);
-                int b;
-                System.out.println("Veuiller indiquer la colonne correspondante :");
-                b = colonne.nextInt();
+                    Scanner colonne = new Scanner(System.in);
+                    int b;
+                    System.out.println("Veuiller indiquer la colonne correspondante :");
+                    b = colonne.nextInt();
                 
-                GrilleJeu.recupererJeton(a, b);
-                
-                System.out.println("Vous venez de récuperer le jetont de coordonnées ["+a+", "+b+"]");
+                    if (GrilleJeu.recupererJeton(a, b) != null){
+                        System.out.println("Vous venez de récuperer le jetont de coordonnées ["+a+", "+b+"]");
+                        reponse = 1;
+                    }
+                    
+                }
             }
             if (GrilleJeu.etreRemplie()==true){
                 System.out.println("match nul serrez vous la main");
