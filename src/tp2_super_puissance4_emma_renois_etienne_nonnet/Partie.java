@@ -125,6 +125,14 @@ public class Partie {
         
         GrilleJeu.ajouterJetonDansColonne(premierJeton, g);
         GrilleJeu.afficherGrilleSurConsole();
+        for (int i = 0; i < 5; i++){
+            Random ligne = new Random();
+            int a = ligne.nextInt(6);
+            Random colonne = new Random();
+            int b = colonne.nextInt(7);
+            GrilleJeu.placerTrouNoir(a ,b);
+        }
+        
         while(GrilleJeu.etreGagnantePourJoueur(Joueur1)==false & GrilleJeu.etreGagnantePourJoueur(Joueur2)==false){//tant que personne ne gagne
             //si la premiere couleur a jouer etait le rouge la suivant sera le jaune et ainsi de suite
             String p;
@@ -175,6 +183,7 @@ public class Partie {
                     
                 }
             }
+            if ()
             if (GrilleJeu.etreRemplie()==true){
                 System.out.println("match nul serrez vous la main");
             }
