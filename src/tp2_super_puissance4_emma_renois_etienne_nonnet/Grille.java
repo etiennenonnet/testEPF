@@ -3,7 +3,6 @@
  */
 package tp2_super_puissance4_emma_renois_etienne_nonnet;
 
-import java.util.Random;
 
 /**
  *

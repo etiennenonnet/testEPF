@@ -96,9 +96,10 @@ public class Cellule {
         return reponse;
     }
     public boolean activerTrouNoir(){
+        Cellule C1 = new Cellule();
         boolean reponse = false;
         if(trouNoir==true){
-           jetonCourant=null; 
+           jetonCourant=null;
            reponse= true;
         }
         return reponse;
