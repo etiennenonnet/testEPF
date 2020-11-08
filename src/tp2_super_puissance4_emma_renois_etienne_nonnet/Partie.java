@@ -129,8 +129,20 @@ public class Partie {
         
         int g;
         Scanner sc3 = new Scanner (System.in);
-        System.out.println("Dans quel colonne voulez-vous ajoutez votre jeton ? ");
+        System.out.println("Dans quelle colonne voulez-vous ajoutez votre jeton ? ");
         g = sc3.nextInt()-1;
+        
+        int i = 0;
+            int z = 0;
+            while (GrilleJeu.celluleOccupee(i, g)==true){
+                z = i;
+                i++;
+            }
+            if (GrilleJeu.Cellules[z][g].presenceTrouNoir() == true){
+                System.out.println ("Oh mince, votre jeton a disparu dans un trou noir!");
+                GrilleJeu.Cellules[z][g].activerTrouNoir();
+                GrilleJeu.Cellules[z][g] = null;
+            }
         
         Jeton premierJeton = new Jeton(c);
         
@@ -164,8 +176,20 @@ public class Partie {
             
             int rep = choix();
             if (rep == 1){
-                System.out.println("\n"+p+" dans quel colonne ajoutez vous votre jeton "+c+" ?");
+                System.out.println("\n"+p+" dans quelle colonne ajoutez vous votre jeton "+c+" ?");
                 g = sc3.nextInt()-1;
+                
+                int j = 0;
+                int h = 0;
+                while (GrilleJeu.celluleOccupee(j, g)==true){
+                    h = j;
+                    j++;
+                }
+                if (GrilleJeu.Cellules[h][g].presenceTrouNoir() == true){
+                    System.out.println ("Oh mince, votre jeton a disparu dans un trou noir!");
+                    GrilleJeu.Cellules[h][g].activerTrouNoir();
+                    GrilleJeu.Cellules[h][g] = null;
+                }
             }
             if (rep == 2){
                 int reponse = 0;
@@ -195,17 +219,7 @@ public class Partie {
                 System.out.println("Cette colonne est pleine ! Ou voulez vous placer votre jeton ? ");
                 g = sc3.nextInt()-1;
             }
-               
-            int i = 0;
-            int z = 0;
-            while (GrilleJeu.celluleOccupee(i, g)==true){
-                z = i;
-                i++;
-            }
-            if (GrilleJeu.Cellules[z][g].presenceTrouNoir() == true){
-                GrilleJeu.Cellules[z][g].activerTrouNoir();
-                GrilleJeu.Cellules[z][g] = null;
-            }
+             
             
             Jeton JetonCourant = new Jeton(c);
 
