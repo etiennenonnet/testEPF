@@ -159,7 +159,6 @@ public class Partie {
             if (GrilleJeu.Cellules[z][g].presenceTrouNoir() == true){
                 System.out.println ("Oh mince, votre jeton a disparu dans un trou noir!");
                 GrilleJeu.Cellules[z][g].activerTrouNoir();
-                GrilleJeu.Cellules[z][g] = null;
             }
         
         Jeton premierJeton = new Jeton(c);
@@ -206,7 +205,6 @@ public class Partie {
                 if (GrilleJeu.Cellules[h][g].presenceTrouNoir() == true){
                     System.out.println ("Oh mince, votre jeton a disparu dans un trou noir!");
                     GrilleJeu.Cellules[h][g].activerTrouNoir();
-                    GrilleJeu.Cellules[h][g] = null;
                 }
             }
             if (rep == 2){
