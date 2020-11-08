@@ -245,19 +245,19 @@ public class Grille {
         }
         return reponse;
     }
-    public boolean placerTrouNoir(int ligne, int colonne){
+    public boolean placerTrouNoir(int ligne, int colonne){//permet de placer des trous noirs
         boolean reponse=false;
-        if (Cellules[ligne][colonne].trouNoir==false){
-            Cellules[ligne][colonne].trouNoir=true;
+        if (Cellules[ligne][colonne].trouNoir==false){//verifie s'il n'y a pas de trou noir dans la cellule
+            Cellules[ligne][colonne].trouNoir=true;//place un trou noir dans la cellule vide
             reponse=true;
         }
         return reponse;
     } 
     
-    public boolean placerDesintegrateur(int ligne, int colonne){
+    public boolean placerDesintegrateur(int ligne, int colonne){//permet de placer des desintegrateurs
         boolean reponse=false;
-        if (Cellules[ligne][colonne].desintegrateur==false){
-            Cellules[ligne][colonne].desintegrateur=true;
+        if (Cellules[ligne][colonne].desintegrateur==false){//verifie s'il n'y a pas deja un desintegrateur dans la cellule
+            Cellules[ligne][colonne].desintegrateur=true;//place un desintegrateur dans la cellule
             reponse=true;
         }
         return reponse;
@@ -265,8 +265,8 @@ public class Grille {
     
     public boolean supprimerJeton(int ligne, int colonne){
         boolean reponse=false;
-        if (celluleOccupee(ligne,colonne)==true){
-            Cellules[ligne][colonne]=null;
+        if (celluleOccupee(ligne,colonne)==true){//regarde s'il y a un jeton dans la cellule
+            Cellules[ligne][colonne]=null;//s'il y en a un, le supprime
             reponse=true;
         }
         return reponse;
@@ -274,11 +274,11 @@ public class Grille {
     public Jeton recupererJeton(int ligne, int colonne){
         Partie P1 = new Partie();
         Jeton jeton_a_recuperer = null;
-        if (celluleOccupee (ligne,colonne)==true){
-            if(Cellules[ligne][colonne].jetonCourant.Couleur.equals(P1.joueurCourant.Couleur)){
-                jeton_a_recuperer = Cellules[ligne][colonne].recupererJeton();
-                Cellules[ligne][colonne].supprimerJeton();
-                P1.joueurCourant.nombreJetonsrestants += 1;
+        if (celluleOccupee (ligne,colonne)==true){//regarde s'il y a un jeton dans la cellule
+            if(Cellules[ligne][colonne].jetonCourant.Couleur.equals(P1.joueurCourant.Couleur)){//si la couleur du jeton a recuperer est la meme que celle du joueur:
+                jeton_a_recuperer = Cellules[ligne][colonne].recupererJeton();//recupere le jeton
+                Cellules[ligne][colonne].supprimerJeton();//supprime le jeton de la cellule
+                P1.joueurCourant.nombreJetonsrestants += 1;//augmente le nombre de jeton du joueur
             }
             else{
                 System.out.println("Ce jeton n'est pas a toi ! Choisis un jeton de ta couleur");
