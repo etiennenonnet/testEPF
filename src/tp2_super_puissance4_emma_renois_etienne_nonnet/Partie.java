@@ -87,6 +87,7 @@ public class Partie {
         System.out.println("Saisissez le nombre correspondant a votre choix :");
         System.out.println("1) Jouer un jeton");
         System.out.println("2) Recuperer un jeton");
+        System.out.println("3) Placer un desintegrateur");
         rep = sc.nextInt();
         return rep;//retourne le choix de l'utilisateur
     }
@@ -180,7 +181,7 @@ public class Partie {
             
             int rep = choix();
             if (rep == 1){
-                System.out.println("\n"+p+" dans quelle colonne ajoutez vous votre jeton "+c+" ?");
+                System.out.println("Dans quelle colonne ajoutez vous votre jeton "+c+" ?");
                 g = sc3.nextInt()-1;
                 
                 int j = 0;
@@ -208,11 +209,29 @@ public class Partie {
                     System.out.println("Veuiller indiquer la colonne correspondante :");
                     b = colonne.nextInt();//colonne correspondant au jeton a recuperer
                 
-                    if (GrilleJeu.recupererJeton(a, b) != null){//s'il y a un jeton dans cette case de la couleur du joueur, le recupere
+                    if (GrilleJeu.recupererJeton(a, b) !=  null){//recupere le jeton s'il est de la couleur du joueur
                         System.out.println("Vous venez de récuperer le jetont de coordonnées ["+a+", "+b+"]");
                         reponse = 1;
                     }
                     
+                }
+            }
+            if (rep == 3){
+                if (joueurCourant.nombreDesintegrateurs>0){
+                    Scanner ligne = new Scanner(System.in);
+                    int a;
+                    System.out.println("Quel jeton voulez-vous desintegrer?");
+                    System.out.println("Veuillez indiquer la ligne correspondante :");
+                    a = ligne.nextInt();//ligne correspondnat au jeton a desintegrer
+                
+                    Scanner colonne = new Scanner(System.in);
+                    int b;
+                    System.out.println("Veuiller indiquer la colonne correspondante :");
+                    b = colonne.nextInt();//colonne correspondant au jeton a desintegrer
+                    
+                    if (GrilleJeu.celluleOccupee(a, b) != false){//si la cellule n'est pas vide
+                        
+                    }
                 }
             }
             if (GrilleJeu.etreRemplie()==true){//si la grille est rempli et qu'il n'y a pas de gagnant, match nul, fin de la partie
