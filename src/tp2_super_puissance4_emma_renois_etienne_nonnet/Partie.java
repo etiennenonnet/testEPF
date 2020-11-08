@@ -139,7 +139,7 @@ public class Partie {
         
         int i = 0;
             int z = 0;
-            while (GrilleJeu.celluleOccupee(i, g)==true){//ca je vais le changer je commente pas 
+            while (GrilleJeu.celluleOccupee(i, g)==true){//parcourt les lignes pour trouver celle ou se trouve le jeton(ca je vais le changer)
                 z = i;
                 i++;
             }
@@ -185,40 +185,40 @@ public class Partie {
                 
                 int j = 0;
                 int h = 0;
-                while (GrilleJeu.celluleOccupee(j, g)==true){// je vais changer aussi
+                while (GrilleJeu.celluleOccupee(j, g)==true){//parcourt les lignes pour trouver celle ou se trouve le jeton (je vais changer aussi)
                     h = j;
                     j++;
                 }
-                if (GrilleJeu.Cellules[h][g].presenceTrouNoir() == true){
+                if (GrilleJeu.Cellules[h][g].presenceTrouNoir() == true){//permet d'activer le trou noir lorsque l'on place un jeton dessus
                     System.out.println ("Oh mince, votre jeton a disparu dans un trou noir!");
-                    GrilleJeu.Cellules[h][g].activerTrouNoir();
+                    GrilleJeu.Cellules[h][g].activerTrouNoir();//fais disparaitre le jeton
                 }
             }
-            if (rep == 2){
+            if (rep == 2){//permet de recuperer un jeton deja place
                 int reponse = 0;
                 while (reponse == 0){
                     Scanner ligne = new Scanner(System.in);
                     int a;
                     System.out.println("Quel jeton voulez-vous recuperer?");
                     System.out.println("Veuillez indiquer la ligne correspondante :");
-                    a = ligne.nextInt();
+                    a = ligne.nextInt();//ligne correspondnat au jeton a recuperer
                 
                     Scanner colonne = new Scanner(System.in);
                     int b;
                     System.out.println("Veuiller indiquer la colonne correspondante :");
-                    b = colonne.nextInt();
+                    b = colonne.nextInt();//colonne correspondant au jeton a recuperer
                 
-                    if (GrilleJeu.recupererJeton(a, b) != null){
+                    if (GrilleJeu.recupererJeton(a, b) != null){//s'il y a un jeton dans cette case de la couleur du joueur, le recupere
                         System.out.println("Vous venez de récuperer le jetont de coordonnées ["+a+", "+b+"]");
                         reponse = 1;
                     }
                     
                 }
             }
-            if (GrilleJeu.etreRemplie()==true){
+            if (GrilleJeu.etreRemplie()==true){//si la grille est rempli et qu'il n'y a pas de gagnant, match nul, fin de la partie
                 System.out.println("match nul serrez vous la main");
             }
-            while (GrilleJeu.colonneRemplie(g)==true){
+            while (GrilleJeu.colonneRemplie(g)==true){//si la colonne est deja rempli, on ne peut pas y mettre un jeton
                 System.out.println("Cette colonne est pleine ! Ou voulez vous placer votre jeton ? ");
                 g = sc3.nextInt()-1;
             }
@@ -226,12 +226,12 @@ public class Partie {
             
             Jeton JetonCourant = new Jeton(c);
 
-            GrilleJeu.ajouterJetonDansColonne(JetonCourant, g);
+            GrilleJeu.ajouterJetonDansColonne(JetonCourant, g);//met le jeton dans la cellule choisie par le joueur
             GrilleJeu.afficherGrilleSurConsole();
             
             
         }
-        if(GrilleJeu.etreGagnantePourJoueur(Joueur1)==true){
+        if(GrilleJeu.etreGagnantePourJoueur(Joueur1)==true){//si un joeur rempli les conditions pour gagner, fin de la partie
             System.out.println("\n"+Joueur1.Nom+" à gagné, bravo à tous !");
         }else{
             System.out.println("\n"+Joueur2.Nom+" à gagné, bravo à tous !");
