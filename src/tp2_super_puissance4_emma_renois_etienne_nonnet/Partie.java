@@ -229,9 +229,14 @@ public class Partie {
                     System.out.println("Veuiller indiquer la colonne correspondante :");
                     b = colonne.nextInt();//colonne correspondant au jeton a desintegrer
                     
-                    if (GrilleJeu.celluleOccupee(a, b) != false){//si la cellule n'est pas vide
-                        
+                    if (joueurCourant.Couleur.equals(GrilleJeu.lireCouleurDuJeton(a,b))){//si la couleur du jeton a desintegrer est la meme que celle du joueur:
+                        System.out.println("Tu ne peux pas desintegrer ton propre jeton!");
                     }
+                    else{//si la couleur est differente
+                        GrilleJeu.supprimerJeton(a,b);//supprime le jeton selectionne
+                        System.out.println("Tu viens de desintegrer le jeton de l'adversaire !");
+                    }
+                        
                 }
             }
             if (GrilleJeu.etreRemplie()==true){//si la grille est rempli et qu'il n'y a pas de gagnant, match nul, fin de la partie
