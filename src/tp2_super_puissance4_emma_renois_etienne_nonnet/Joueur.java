@@ -17,7 +17,7 @@ public class Joueur {
     public Joueur(String unNom){
         Nom = unNom;
         nombreDesintegrateurs = 0;
-        nombreJetonsrestants = 21;
+        nombreJetonsrestants = 0;
         
     }
     
@@ -29,6 +29,7 @@ public class Joueur {
         boolean Reponse = false;
         if (nombreJetonsrestants < 21){
             ListeJetons[nombreJetonsrestants] = Jeton_a_ajouter;
+            
             Reponse = true;
             
         }
