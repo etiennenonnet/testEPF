@@ -181,110 +181,119 @@ public class Partie {
             
             System.out.println("\n"+p+" a vous de jouer, que voulez-vous faire ?");
             
-            int rep = choix();
-            if (rep == 1){//veut ajouter un jeton
-                System.out.println("Dans quelle colonne ajoutez vous votre jeton "+c+" ?");
-                g = sc3.nextInt()-1;// g la colonne souhaité
-                
-                
-                Jeton JetonCourant = new Jeton(c);
-                int k=GrilleJeu.ajouterJetonDansColonne(JetonCourant, g);//met le jeton dans la cellule choisie par le joueur et nous indique la ligne du jeton
-                if (joueurCourant == Joueur1){
-                    Joueur1.nombreJetonsrestants -= 1;
-                }
-                else{
-                    Joueur2.nombreJetonsrestants -=1;
-                }
-                
-                if (GrilleJeu.Cellules[k][g].presenceTrouNoir() == true){//permet d'activer le trou noir lorsque l'on place un jeton dessus
-                    System.out.println ("Oh mince, votre jeton a disparu dans un trou noir!");
-                    GrilleJeu.Cellules[k][g].activerTrouNoir();//fais disparaitre le jeton
-                }
-                //si il y a un desintegrateur sur la case le nbre de desintegrateur du joueur augment de 1
-                if (GrilleJeu.Cellules[k][g].presenceDesintegrateur()==true){
-                    System.out.println("Felicitation ! Vous avez reçu un desintegrateur !");
-                    if (joueurCourant==Joueur1){
-                        GrilleJeu.Cellules[k][g].recupererDesintegrateur();
-                       Joueur1.nombreDesintegrateurs+=1;
-                       System.out.println(p+" vous avez : "+Joueur1.nombreDesintegrateurs+" desintegrateur");
-                    }else{
-                        GrilleJeu.Cellules[k][g].recupererDesintegrateur();
-                        Joueur2.nombreDesintegrateurs+=1;
-                        System.out.println(p+" vous avez : "+Joueur1.nombreDesintegrateurs+" desintegrateur");
+            String fini = "non";
+            while (fini == "non"){
+                int rep = choix();
+                if (rep == 1){//veut ajouter un jeton
+                    System.out.println("Dans quelle colonne ajoutez vous votre jeton "+c+" ?");
+                    g = sc3.nextInt()-1;// g la colonne souhaité
+
+                    Jeton JetonCourant = new Jeton(c);
+                    int k=GrilleJeu.ajouterJetonDansColonne(JetonCourant, g);//met le jeton dans la cellule choisie par le joueur et nous indique la ligne du jeton
+                    if (joueurCourant == Joueur1){
+                        Joueur1.nombreJetonsrestants -= 1;
                     }
-                    
-                }
-            
-            }
-            if (rep == 2){//permet de recuperer un jeton deja place
-                int reponse = 0;
-                while (reponse == 0){
-                    Scanner ligne = new Scanner(System.in);//on demande les coordonné du jeton a l'utilisateur
-                    int a;
-                    System.out.println("Quel jeton de couleur "+c+" voulez-vous recuperer?");
-                    System.out.println("Veuillez indiquer la ligne correspondante :");
-                    a = ligne.nextInt()-1;//ligne correspondnat au jeton a recuperer
-                
-                    Scanner colonne = new Scanner(System.in);
-                    int b;
-                    System.out.println("Veuiller indiquer la colonne correspondante :");
-                    b = colonne.nextInt()-1;//colonne correspondant au jeton a recuperer
-                    Jeton JetonRecupere = new Jeton(c);
-                    JetonRecupere=GrilleJeu.recupererJeton(a, b);
-                    if(joueurCourant == Joueur1){
-                        if (JetonRecupere !=  null){//recupere le jeton s'il est de la couleur du joueur
-                            if (JetonRecupere.Couleur.equals(Joueur1.Couleur)){//si la couleur du jeton a recuperer est la meme que celle du joueur:
-                                System.out.println("Vous venez de récuperer le jeton de coordonnées ["+a+", "+b+"]");
-                                reponse = 1;
-                                Joueur1.nombreJetonsrestants += 1;
-                                System.out.println(p+" il te reste :"+Joueur1.nombreJetonsrestants+" jetons");
-                            }
-                            else{
-                                System.out.println("Ce jeton n'est pas a toi ! Choisis un jeton de ta couleur");
-                            }
+                    else{
+                        Joueur2.nombreJetonsrestants -=1;
+                    }
+
+                    if (GrilleJeu.Cellules[k][g].presenceTrouNoir() == true){//permet d'activer le trou noir lorsque l'on place un jeton dessus
+                        System.out.println ("Oh mince, votre jeton a disparu dans un trou noir!");
+                        GrilleJeu.Cellules[k][g].activerTrouNoir();//fais disparaitre le jeton
+                    }
+                    //si il y a un desintegrateur sur la case le nbre de desintegrateur du joueur augment de 1
+                    if (GrilleJeu.Cellules[k][g].presenceDesintegrateur()==true){
+                        System.out.println("Felicitation ! Vous avez reçu un desintegrateur !");
+                        if (joueurCourant==Joueur1){
+                            GrilleJeu.Cellules[k][g].recupererDesintegrateur();
+                           Joueur1.nombreDesintegrateurs+=1;
+                           System.out.println(p+" vous avez : "+Joueur1.nombreDesintegrateurs+" desintegrateur");
+                        }else{
+                            GrilleJeu.Cellules[k][g].recupererDesintegrateur();
+                            Joueur2.nombreDesintegrateurs+=1;
+                            System.out.println(p+" vous avez : "+Joueur1.nombreDesintegrateurs+" desintegrateur");
                         }
+
                     }
-                    if(joueurCourant == Joueur2){
-                        if (JetonRecupere !=  null){//recupere le jeton s'il est de la couleur du joueur
-                            if (JetonRecupere.Couleur.equals(Joueur2.Couleur)){//si la couleur du jeton a recuperer est la meme que celle du joueur:
-                                System.out.println("Vous venez de récuperer le jeton de coordonnées ["+a+", "+b+"]");
-                                reponse = 1;
-                                Joueur2.nombreJetonsrestants += 1;
-                                System.out.println(p+" il te reste :"+Joueur2.nombreJetonsrestants+" jetons");
-                            }
-                            else{
-                                System.out.println("Ce jeton n'est pas a toi ! Choisis un jeton de ta couleur");
-                            }
-                        }
-                    }
-                    
+                    fini = "oui";
                 }
-            }
-            if (rep == 3){
-                if (joueurCourant.nombreDesintegrateurs>0){
-                    Scanner ligne = new Scanner(System.in);
-                    int a;
-                    System.out.println("Quel jeton voulez-vous desintegrer?");
-                    System.out.println("Veuillez indiquer la ligne correspondante :");
-                    a = ligne.nextInt();//ligne correspondant au jeton a desintegrer
-                
-                    Scanner colonne = new Scanner(System.in);
-                    int b;
-                    System.out.println("Veuiller indiquer la colonne correspondante :");
-                    b = colonne.nextInt();//colonne correspondant au jeton a desintegrer
-                    String v = "rouge";
-                    if (c.equals(v)){
-                        v="jaune";    
+                if (rep == 2){//permet de recuperer un jeton deja place
+                    int reponse = 0;
+                    while (reponse == 0){
+                        Scanner ligne = new Scanner(System.in);//on demande les coordonné du jeton a l'utilisateur
+                        int a;
+                        System.out.println("Quel jeton de couleur "+c+" voulez-vous recuperer?");
+                        System.out.println("Veuillez indiquer la ligne correspondante :");
+                        a = ligne.nextInt()-1;//ligne correspondnat au jeton a recuperer
+
+                        Scanner colonne = new Scanner(System.in);
+                        int b;
+                        System.out.println("Veuiller indiquer la colonne correspondante :");
+                        b = colonne.nextInt()-1;//colonne correspondant au jeton a recuperer
+                        Jeton JetonRecupere = new Jeton(c);
+                        JetonRecupere = GrilleJeu.Cellules[a][b].jetonCourant;
+                        if(joueurCourant == Joueur1){
+                                if (JetonRecupere.Couleur.equals(Joueur1.Couleur)){//si la couleur du jeton a recuperer est la meme que celle du joueur:
+                                    GrilleJeu.recupererJeton(a, b);
+                                    System.out.println("Vous venez de récuperer le jeton de coordonnées ["+a+", "+b+"]");
+                                    reponse = 1;
+                                    Joueur1.nombreJetonsrestants += 1;
+                                    System.out.println(p+" tu recuperes :"+Joueur1.nombreJetonsrestants+" jetons");
+                                    fini = "oui";
+                                }
+                                else{
+                                    System.out.println("Ce jeton n'est pas a toi ! Choisis un jeton de ta couleur");
+                                    reponse = 1;
+                                }
+                            }
+                        if(joueurCourant == Joueur2){
+                                if (JetonRecupere.Couleur.equals(Joueur2.Couleur)){//si la couleur du jeton a recuperer est la meme que celle du joueur:
+                                    GrilleJeu.recupererJeton(a, b);
+                                    System.out.println("Vous venez de récuperer le jeton de coordonnées ["+a+", "+b+"]");
+                                    reponse = 1;
+                                    Joueur2.nombreJetonsrestants += 1;
+                                    System.out.println(p+" tu recuperes :"+Joueur2.nombreJetonsrestants+" jetons");
+                                    fini = "oui";
+                                }
+                                else{
+                                    System.out.println("Ce jeton n'est pas a toi ! Choisis un jeton de ta couleur");
+                                    reponse = 1;
+                                }
+                        }
+
                     }
-                    Jeton J = new Jeton(v);
-                    if (J.Couleur.equals(GrilleJeu.lireCouleurDuJeton(a,b))){//si la couleur du jeton a desintegrer est la meme que celle du joueur:
-                        System.out.println("Tu ne peux pas desintegrer ton propre jeton!");
+                }
+                if (rep == 3){
+                    if (joueurCourant.nombreDesintegrateurs>0){
+                        Scanner ligne = new Scanner(System.in);
+                        int a;
+                        String v = "rouge";
+                        if (c.equals(v)){
+                            v="jaune";    
+                        }
+                        Jeton J = new Jeton(v);
+                        System.out.println("Quel jeton de couleur "+v+" voulez-vous desintegrer?");
+                        System.out.println("Veuillez indiquer la ligne correspondante :");
+                        a = ligne.nextInt();//ligne correspondant au jeton a desintegrer
+
+                        Scanner colonne = new Scanner(System.in);
+                        int b;
+                        System.out.println("Veuiller indiquer la colonne correspondante :");
+                        b = colonne.nextInt();//colonne correspondant au jeton a desintegrer
+                        if (J.Couleur.equals(GrilleJeu.lireCouleurDuJeton(a,b))){//si la couleur du jeton a desintegrer n'est pas la même que celle du joueur:
+                            GrilleJeu.supprimerJeton(a,b);//supprime le jeton selectionne
+                            System.out.println("Tu viens de desintegrer le jeton de l'adversaire !");
+                            System.out.println("Tu ne peux pas desintegrer ton propre jeton!");
+                        }
+                        else{//si la couleur est la meme
+                            System.out.println("Tu ne peux pas desintegrer ton propre jeton!");
+                        }
+
                     }
-                    else{//si la couleur est differente
-                        GrilleJeu.supprimerJeton(a,b);//supprime le jeton selectionne
-                        System.out.println("Tu viens de desintegrer le jeton de l'adversaire !");
+                    else{
+                        System.out.println("Vous n'avez pas de desintegrateur, faites un autre choix");
+                        choix();
                     }
-                        
                 }
             }
             if (GrilleJeu.etreRemplie()==true){//si la grille est remplie et qu'il n'y a pas de gagnant, match nul, fin de la partie
