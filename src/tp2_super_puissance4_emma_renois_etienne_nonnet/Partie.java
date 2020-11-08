@@ -27,10 +27,13 @@ public class Partie {
                 ListeJoueurs[0].ajouterJeton(J1);//donne les jetons au joueur
             }
             ListeJoueurs[1].affecterCouleur(j);
+            int n=1;
             for (int i=0; i<21; i++){
                 Jeton J2 = new Jeton(j);
                 ListeJoueurs[1].ajouterJeton(J2);
+                n+=1;
             }
+            ListeJoueurs[1].nombreJetonsrestants(n);
             System.out.println("Le Joueur1 est rouge et le Joueur2 est jaune");
         }
         else{

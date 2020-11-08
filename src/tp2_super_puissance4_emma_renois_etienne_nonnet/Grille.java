@@ -18,16 +18,17 @@ public class Grille {
         }
     }
     
-    public boolean ajouterJetonDansColonne(Jeton jeton_a_ajouter, int une_colonne){
-        boolean reponse=false;//si le module ne renvoit rien c'est qu'il n'a pas marché
+    public int ajouterJetonDansColonne(Jeton jeton_a_ajouter, int une_colonne){
+        int reponse=10;//si le module ne renvoit rien c'est qu'il n'a pas marché
         int a;
         for(int i=0; i<=5;i++){
             a=5-i;//on demarre de la cellule la plus basse de la colonne
             //Cellule c = Cellules[i][une_colonne];
             if (Cellules[a][une_colonne].jetonCourant==null){//si la cellule contient le jeton nul
                 Cellules[a][une_colonne].jetonCourant=jeton_a_ajouter;//alors le jeton à ajouté ce met dans cette cellule
-                reponse = true;//laors le programme a correctement fonctionné
-                break;//on arret la boucle pour ce la remplissage s'arret apres l'ajoute d'un jeton
+                return a;
+                //reponse= 1;//laors le programme a correctement fonctionné
+                //break;//on arret la boucle pour ce la remplissage s'arret apres l'ajoute d'un jeton
             }
         }
         return reponse;//on retourne si le jeton à etait correctement ajouté
