@@ -72,7 +72,7 @@ public class Grille {
                 }else if (Cellules[i][j].jetonCourant == null){
                     System.out.print("\u001B[0m N ");
                 }else{
-                    if (Cellules[i][j].jetonCourant.lireCouleur()=="rouge"){
+                    if ("rouge".equals(Cellules[i][j].jetonCourant.lireCouleur())){
                 
                         System.out.print("\u001B[0m R ");
                     }else{
