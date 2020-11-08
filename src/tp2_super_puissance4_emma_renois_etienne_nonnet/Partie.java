@@ -3,28 +3,28 @@
  */
 package tp2_super_puissance4_emma_renois_etienne_nonnet;
 
-import java.util.Random;
-import java.util.Scanner;
+import java.util.Random;// permet de renvoyer un nombre aleatoirement
+import java.util.Scanner;// permet de demander a l'utilisaeur
 
 /**
  *
  * @author Etienne Nonnet
  */
 public class Partie {
-    Joueur[] ListeJoueurs = new Joueur[2];
-    Joueur joueurCourant;
-    
+    Joueur[] ListeJoueurs = new Joueur[2]; // represente les deux joueurs
+    Joueur joueurCourant;// represente le joueur en train de jouer 
+    Grille GrilleJeu = new Grille();//represente la grille de jeu
     
     public void attribuerCouleursAuxJoueurs(){
         String r = "rouge";
         String j = "jaune";
         Random generateurAleat = new Random();
-        int x = generateurAleat.nextInt(2);
+        int x = generateurAleat.nextInt(2);//prend un nombre aléatoire entre 1 et 2
         if (x == 1){
-            ListeJoueurs[0].affecterCouleur(r);
-            for (int i=0; i<21; i++){
+            ListeJoueurs[0].affecterCouleur(r);//affecte la couleur rouge au Joueur 1
+            for (int i=0; i<21; i++){//crée 21 jetons de la couleur du joueur
                 Jeton J1 = new Jeton(r);
-                ListeJoueurs[0].ajouterJeton(J1);
+                ListeJoueurs[0].ajouterJeton(J1);//donne les jetons au joueur
             }
             ListeJoueurs[1].affecterCouleur(j);
             for (int i=0; i<21; i++){
@@ -49,17 +49,33 @@ public class Partie {
     }
     
     public Grille initialiserPartie(){
-        Grille GrilleJeu = new Grille();
-            GrilleJeu.viderGrille();
-        for (int i=0; i<5; i++){
-            int n = (int)(Math.random() * 5);
-            int m = (int)(Math.random() * 6);
-            GrilleJeu.placerTrouNoir(n,m);  
+        GrilleJeu.viderGrille();//permet de vider la grille de jeu
+        int m = 0;
+        while (m<5){
+            Random ligne = new Random();
+            int a = ligne.nextInt(5);
+            Random colonne = new Random();
+            int b = colonne.nextInt(6);
+            if (GrilleJeu.Cellules[a][b].presenceTrouNoir() == false){
+                GrilleJeu.placerTrouNoir(a ,b);//place 5 trous noirs aleatoirement sur la gille
+                if (m>2){
+                    if (GrilleJeu.Cellules[a][b].presenceDesintegrateur() == false){
+                        GrilleJeu.placerDesintegrateur(a ,b);//place 2 desintegrateurs derriere les trous noirs (insvisible)
+                    }
+                }
+                m++;
+            }
         }
-        for (int i=0; i<5; i++){
-            int o = (int)(Math.random() * 5);
-            int p = (int)(Math.random() * 6);
-            GrilleJeu.placerDesintegrateur(o,p);
+        int q = 0;
+        while (q<3){
+            Random ligne = new Random();
+            int a = ligne.nextInt(5);
+            Random colonne = new Random();
+            int b = colonne.nextInt(6);
+            if (GrilleJeu.Cellules[a][b].presenceDesintegrateur() == false){
+                        GrilleJeu.placerDesintegrateur(a ,b);//place les 3 autres desintegrateurs sur la grille (visible)
+                        q++;
+                    }
         }
         return GrilleJeu;  
     }
@@ -96,35 +112,6 @@ public class Partie {
         ListeJoueurs[1] = Joueur2;
         //System.out.println("Le Joueur2 s'appelle : "+Joueur2.Nom+"\n");
         attribuerCouleursAuxJoueurs();
-        Grille GrilleJeu = new Grille();
-        
-        int m = 0;
-        while (m<5){
-            Random ligne = new Random();
-            int a = ligne.nextInt(5);
-            Random colonne = new Random();
-            int b = colonne.nextInt(6);
-            if (GrilleJeu.Cellules[a][b].presenceTrouNoir() == false){
-                GrilleJeu.placerTrouNoir(a ,b);
-                if (m>2){
-                    if (GrilleJeu.Cellules[a][b].presenceDesintegrateur() == false){
-                        GrilleJeu.placerDesintegrateur(a ,b);
-                    }
-                }
-                m++;
-            }
-        }
-        int q = 0;
-        while (q<3){
-            Random ligne = new Random();
-            int a = ligne.nextInt(5);
-            Random colonne = new Random();
-            int b = colonne.nextInt(6);
-            if (GrilleJeu.Cellules[a][b].presenceDesintegrateur() == false){
-                        GrilleJeu.placerDesintegrateur(a ,b);
-                        q++;
-                    }
-        }
         
         GrilleJeu.afficherGrilleSurConsole();
         Random couleur = new Random();
