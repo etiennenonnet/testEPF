@@ -27,7 +27,7 @@ public class Grille {
             if (Cellules[a][une_colonne].jetonCourant==null){//si la cellule contient le jeton nul
                 Cellules[a][une_colonne].jetonCourant=jeton_a_ajouter;//alors le jeton à ajouté ce met dans cette cellule
                 return a;
-                //reponse= 1;//laors le programme a correctement fonctionné
+                //reponse= 1;//alors le programme a correctement fonctionné
                 //break;//on arret la boucle pour ce la remplissage s'arret apres l'ajoute d'un jeton
             }
         }
@@ -273,17 +273,16 @@ public class Grille {
         return reponse;
     }
     public Jeton recupererJeton(int ligne, int colonne){
-        Partie P1 = new Partie();
         Jeton jeton_a_recuperer = null;
         if (celluleOccupee (ligne,colonne)==true){//regarde s'il y a un jeton dans la cellule
-            if(Cellules[ligne][colonne].jetonCourant.Couleur.equals(P1.joueurCourant.Couleur)){//si la couleur du jeton a recuperer est la meme que celle du joueur:
-                jeton_a_recuperer = Cellules[ligne][colonne].recupererJeton();//recupere le jeton
-                Cellules[ligne][colonne].supprimerJeton();//supprime le jeton de la cellule
-                P1.joueurCourant.nombreJetonsrestants += 1;//augmente le nombre de jeton du joueur
-            }
-            else{
-                System.out.println("Ce jeton n'est pas a toi ! Choisis un jeton de ta couleur");
-            }
+            //if(Cellules[ligne][colonne].jetonCourant.Couleur.equals(P1.joueurCourant.Couleur)){//si la couleur du jeton a recuperer est la meme que celle du joueur:
+            jeton_a_recuperer = Cellules[ligne][colonne].recupererJeton();//recupere le jeton
+            Cellules[ligne][colonne].supprimerJeton();//supprime le jeton de la cellule
+            //P1.joueurCourant.nombreJetonsrestants += 1;//augmente le nombre de jeton du joueur
+            //}
+            //else{
+            //    System.out.println("Ce jeton n'est pas a toi ! Choisis un jeton de ta couleur");
+            //}
         }
         else {
             System.out.println("Cette cellule est vide, choisis une cellule avec ton jeton");
