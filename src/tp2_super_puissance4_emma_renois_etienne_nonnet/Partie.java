@@ -108,7 +108,7 @@ public class Partie {
                 GrilleJeu.placerTrouNoir(a ,b);
                 if (m>2){
                     if (GrilleJeu.Cellules[a][b].presenceDesintegrateur() == false){
-                        GrilleJeu.placerTrouNoir(a ,b);
+                        GrilleJeu.placerDesintegrateur(a ,b);
                     }
                 }
                 m++;
@@ -121,7 +121,7 @@ public class Partie {
             Random colonne = new Random();
             int b = colonne.nextInt(6);
             if (GrilleJeu.Cellules[a][b].presenceDesintegrateur() == false){
-                        GrilleJeu.placerTrouNoir(a ,b);
+                        GrilleJeu.placerDesintegrateur(a ,b);
                         q++;
                     }
         }
