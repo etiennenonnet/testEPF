@@ -226,23 +226,26 @@ public class Partie {
                     b = colonne.nextInt()-1;//colonne correspondant au jeton a recuperer
                     Jeton JetonRecupere = new Jeton(c);
                     JetonRecupere=GrilleJeu.recupererJeton(a, b);
-                    
-                    if (JetonRecupere !=  null){//recupere le jeton s'il est de la couleur du joueur
-                        if(joueurCourant == Joueur1){
-                            if (GrilleJeu.Cellules[a][b].jetonCourant.Couleur.equals(Joueur1.Couleur)){//si la couleur du jeton a recuperer est la meme que celle du joueur:
+                    if(joueurCourant == Joueur1){
+                        if (JetonRecupere !=  null){//recupere le jeton s'il est de la couleur du joueur
+                            if (JetonRecupere.Couleur.equals(Joueur1.Couleur)){//si la couleur du jeton a recuperer est la meme que celle du joueur:
                                 System.out.println("Vous venez de récuperer le jeton de coordonnées ["+a+", "+b+"]");
                                 reponse = 1;
                                 Joueur1.nombreJetonsrestants += 1;
+                                System.out.println(p+" il te reste :"+Joueur1.nombreJetonsrestants+" jetons");
                             }
                             else{
                                 System.out.println("Ce jeton n'est pas a toi ! Choisis un jeton de ta couleur");
                             }
                         }
-                        if(joueurCourant == Joueur2){
-                            if (GrilleJeu.Cellules[a][b].jetonCourant.Couleur.equals(Joueur2.Couleur)){//si la couleur du jeton a recuperer est la meme que celle du joueur:
+                    }
+                    if(joueurCourant == Joueur2){
+                        if (JetonRecupere !=  null){//recupere le jeton s'il est de la couleur du joueur
+                            if (JetonRecupere.Couleur.equals(Joueur2.Couleur)){//si la couleur du jeton a recuperer est la meme que celle du joueur:
                                 System.out.println("Vous venez de récuperer le jeton de coordonnées ["+a+", "+b+"]");
                                 reponse = 1;
                                 Joueur2.nombreJetonsrestants += 1;
+                                System.out.println(p+" il te reste :"+Joueur2.nombreJetonsrestants+" jetons");
                             }
                             else{
                                 System.out.println("Ce jeton n'est pas a toi ! Choisis un jeton de ta couleur");
