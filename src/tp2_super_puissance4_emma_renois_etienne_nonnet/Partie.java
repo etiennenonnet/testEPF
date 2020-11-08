@@ -202,10 +202,15 @@ public class Partie {
                 }
                 //si il y a un desintegrateur sur la case le nbre de desintegrateur du joueur augment de 1
                 if (GrilleJeu.Cellules[k][g].presenceDesintegrateur()==true){
+                    System.out.println("Felicitation ! Vous avez reçu un desintegrateur !");
                     if (joueurCourant==Joueur1){
+                        GrilleJeu.Cellules[k][g].recupererDesintegrateur();
                        Joueur1.nombreDesintegrateurs+=1;
+                       System.out.println(p+" vous avez : "+Joueur1.nombreDesintegrateurs+" desintegrateur");
                     }else{
+                        GrilleJeu.Cellules[k][g].recupererDesintegrateur();
                         Joueur2.nombreDesintegrateurs+=1;
+                        System.out.println(p+" vous avez : "+Joueur1.nombreDesintegrateurs+" desintegrateur");
                     }
                     
                 }
@@ -216,7 +221,7 @@ public class Partie {
                 while (reponse == 0){
                     Scanner ligne = new Scanner(System.in);//on demande les coordonné du jeton a l'utilisateur
                     int a;
-                    System.out.println("Quel jeton voulez-vous recuperer?");
+                    System.out.println("Quel jeton de couleur "+c+" voulez-vous recuperer?");
                     System.out.println("Veuillez indiquer la ligne correspondante :");
                     a = ligne.nextInt()-1;//ligne correspondnat au jeton a recuperer
                 
