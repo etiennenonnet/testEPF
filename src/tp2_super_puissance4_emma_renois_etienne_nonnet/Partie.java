@@ -200,6 +200,16 @@ public class Partie {
                     System.out.println ("Oh mince, votre jeton a disparu dans un trou noir!");
                     GrilleJeu.Cellules[k][g].activerTrouNoir();//fais disparaitre le jeton
                 }
+                //si il y a un desintegrateur sur la case le nbre de desintegrateur du joueur augment de 1
+                if (GrilleJeu.Cellules[k][g].presenceDesintegrateur()==true){
+                    if (joueurCourant==Joueur1){
+                       Joueur1.nombreDesintegrateurs+=1;
+                    }else{
+                        Joueur2.nombreDesintegrateurs+=1;
+                    }
+                    
+                }
+            
             }
             if (rep == 2){//permet de recuperer un jeton deja place
                 int reponse = 0;
@@ -272,6 +282,7 @@ public class Partie {
                 System.out.println("Cette colonne est pleine ! Ou voulez vous placer votre jeton ? ");
                 g = sc3.nextInt()-1;
             }
+            
              
             
             
