@@ -97,6 +97,7 @@ public class Partie {
         //System.out.println("Le Joueur2 s'appelle : "+Joueur2.Nom+"\n");
         attribuerCouleursAuxJoueurs();
         Grille GrilleJeu = new Grille();
+        
         int m = 0;
         while (m<5){
             Random ligne = new Random();
@@ -105,9 +106,26 @@ public class Partie {
             int b = colonne.nextInt(6);
             if (GrilleJeu.Cellules[a][b].presenceTrouNoir() == false){
                 GrilleJeu.placerTrouNoir(a ,b);
+                if (m>2){
+                    if (GrilleJeu.Cellules[a][b].presenceDesintegrateur() == false){
+                        GrilleJeu.placerTrouNoir(a ,b);
+                    }
+                }
                 m++;
             }
         }
+        int q = 0;
+        while (q<3){
+            Random ligne = new Random();
+            int a = ligne.nextInt(5);
+            Random colonne = new Random();
+            int b = colonne.nextInt(6);
+            if (GrilleJeu.Cellules[a][b].presenceDesintegrateur() == false){
+                        GrilleJeu.placerTrouNoir(a ,b);
+                        q++;
+                    }
+        }
+        
         GrilleJeu.afficherGrilleSurConsole();
         Random couleur = new Random();
         int o = couleur.nextInt(2);
