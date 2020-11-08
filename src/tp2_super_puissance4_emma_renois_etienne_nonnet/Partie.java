@@ -138,20 +138,18 @@ public class Partie {
         System.out.println("Dans quelle colonne voulez-vous ajoutez votre jeton ? ");
         g = sc3.nextInt()-1;
         
-        int i = 0;
-            int z = 0;
-            while (GrilleJeu.celluleOccupee(i, g)==true){//parcourt les lignes pour trouver celle ou se trouve le jeton(ca je vais le changer)
-                z = i;
-                i++;
-            }
-            if (GrilleJeu.Cellules[z][g].presenceTrouNoir() == true){//permet d'activer le trou noir lorsque l'on place un jeton dessus
-                System.out.println ("Oh mince, votre jeton a disparu dans un trou noir!");
-                GrilleJeu.Cellules[z][g].activerTrouNoir();
-            }
+        
+        
+            
+            
         
         Jeton premierJeton = new Jeton(c);
         
-        GrilleJeu.ajouterJetonDansColonne(premierJeton, g);
+        int s=GrilleJeu.ajouterJetonDansColonne(premierJeton, g);
+        if (GrilleJeu.Cellules[s][g].presenceTrouNoir() == true){//permet d'activer le trou noir lorsque l'on place un jeton dessus
+                System.out.println ("Oh mince, votre jeton a disparu dans un trou noir!");
+                GrilleJeu.Cellules[s][g].activerTrouNoir();
+            }
         GrilleJeu.afficherGrilleSurConsole();
         
         
@@ -159,58 +157,63 @@ public class Partie {
             //si la premiere couleur a jouer etait le rouge la suivant sera le jaune et ainsi de suite
             String p;
             if ("jaune".equals(c)){//permet d'afficher le nom du joueur en fonction de la couleur qui doit jouer 
-                c="rouge";
-                if(ListeJoueurs[0].Couleur.equals(c)){
+                c="rouge";//si la derniere couleur jouée etait le jaune la nouvelle couleur le rouge
+                if(ListeJoueurs[0].Couleur.equals(c)){//si le premier joueur à des jeton rouge c'est à lui de jouer
                     p = Joueur1.Nom;
+                    joueurCourant=Joueur1;
+                    
                 }
-                else{
+                else{//sinon à l'autre
                     p = Joueur2.Nom;
+                    joueurCourant=Joueur2;
                 }
             }
             else{
                 c="jaune";
                 if(ListeJoueurs[0].Couleur.equals(c)){
                     p = Joueur1.Nom;
+                    joueurCourant=Joueur1;
                 }
                 else{
                     p = Joueur2.Nom;
+                    joueurCourant=Joueur2;
                 }
             }
             
             System.out.println("\n"+p+" a vous de jouer, que voulez-vous faire ?");
             
             int rep = choix();
-            if (rep == 1){
+            if (rep == 1){//veut ajouter un jeton
                 System.out.println("Dans quelle colonne ajoutez vous votre jeton "+c+" ?");
-                g = sc3.nextInt()-1;
+                g = sc3.nextInt()-1;// g la colonne souhaité
                 
-                int j = 0;
-                int h = 0;
-                while (GrilleJeu.celluleOccupee(j, g)==true){//parcourt les lignes pour trouver celle ou se trouve le jeton (je vais changer aussi)
-                    h = j;
-                    j++;
-                }
-                if (GrilleJeu.Cellules[h][g].presenceTrouNoir() == true){//permet d'activer le trou noir lorsque l'on place un jeton dessus
+                
+                Jeton JetonCourant = new Jeton(c);
+                int k=GrilleJeu.ajouterJetonDansColonne(JetonCourant, g);//met le jeton dans la cellule choisie par le joueur et nous indique la ligne du jeton
+                
+                
+                if (GrilleJeu.Cellules[k][g].presenceTrouNoir() == true){//permet d'activer le trou noir lorsque l'on place un jeton dessus
                     System.out.println ("Oh mince, votre jeton a disparu dans un trou noir!");
-                    GrilleJeu.Cellules[h][g].activerTrouNoir();//fais disparaitre le jeton
+                    GrilleJeu.Cellules[k][g].activerTrouNoir();//fais disparaitre le jeton
                 }
             }
             if (rep == 2){//permet de recuperer un jeton deja place
                 int reponse = 0;
                 while (reponse == 0){
-                    Scanner ligne = new Scanner(System.in);
+                    Scanner ligne = new Scanner(System.in);//on demande les coordonné du jeton a l'utilisateur
                     int a;
                     System.out.println("Quel jeton voulez-vous recuperer?");
                     System.out.println("Veuillez indiquer la ligne correspondante :");
-                    a = ligne.nextInt();//ligne correspondnat au jeton a recuperer
+                    a = ligne.nextInt()-1;//ligne correspondnat au jeton a recuperer
                 
                     Scanner colonne = new Scanner(System.in);
                     int b;
                     System.out.println("Veuiller indiquer la colonne correspondante :");
-                    b = colonne.nextInt();//colonne correspondant au jeton a recuperer
-                
-                    if (GrilleJeu.recupererJeton(a, b) !=  null){//recupere le jeton s'il est de la couleur du joueur
-                        System.out.println("Vous venez de récuperer le jetont de coordonnées ["+a+", "+b+"]");
+                    b = colonne.nextInt()-1;//colonne correspondant au jeton a recuperer
+                    Jeton JetonRecupere = new Jeton(c);
+                    JetonRecupere=GrilleJeu.recupererJeton(a, b);
+                    if (JetonRecupere !=  null){//recupere le jeton s'il est de la couleur du joueur
+                        System.out.println("Vous venez de récuperer le jeton de coordonnées ["+a+", "+b+"]");
                         reponse = 1;
                     }
                     
@@ -248,9 +251,8 @@ public class Partie {
             }
              
             
-            Jeton JetonCourant = new Jeton(c);
-
-            GrilleJeu.ajouterJetonDansColonne(JetonCourant, g);//met le jeton dans la cellule choisie par le joueur
+            
+            
             GrilleJeu.afficherGrilleSurConsole();
             
             
