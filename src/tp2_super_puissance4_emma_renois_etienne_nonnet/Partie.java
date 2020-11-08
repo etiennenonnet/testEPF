@@ -97,6 +97,17 @@ public class Partie {
         //System.out.println("Le Joueur2 s'appelle : "+Joueur2.Nom+"\n");
         attribuerCouleursAuxJoueurs();
         Grille GrilleJeu = new Grille();
+        int m = 0;
+        while (m<5){
+            Random ligne = new Random();
+            int a = ligne.nextInt(5);
+            Random colonne = new Random();
+            int b = colonne.nextInt(6);
+            if (GrilleJeu.Cellules[a][b].presenceTrouNoir() == false){
+                GrilleJeu.placerTrouNoir(a ,b);
+                m++;
+            }
+        }
         GrilleJeu.afficherGrilleSurConsole();
         Random couleur = new Random();
         int o = couleur.nextInt(2);
@@ -125,13 +136,7 @@ public class Partie {
         
         GrilleJeu.ajouterJetonDansColonne(premierJeton, g);
         GrilleJeu.afficherGrilleSurConsole();
-        for (int i = 0; i < 5; i++){
-            Random ligne = new Random();
-            int a = ligne.nextInt(6);
-            Random colonne = new Random();
-            int b = colonne.nextInt(7);
-            GrilleJeu.placerTrouNoir(a ,b);
-        }
+        
         
         while(GrilleJeu.etreGagnantePourJoueur(Joueur1)==false & GrilleJeu.etreGagnantePourJoueur(Joueur2)==false){//tant que personne ne gagne
             //si la premiere couleur a jouer etait le rouge la suivant sera le jaune et ainsi de suite
@@ -159,7 +164,7 @@ public class Partie {
             
             int rep = choix();
             if (rep == 1){
-                System.out.println("\n"+p+" Dans quel colonne ajoutez vous votre jeton "+c+" ?");
+                System.out.println("\n"+p+" dans quel colonne ajoutez vous votre jeton "+c+" ?");
                 g = sc3.nextInt()-1;
             }
             if (rep == 2){
@@ -183,7 +188,6 @@ public class Partie {
                     
                 }
             }
-            if ()
             if (GrilleJeu.etreRemplie()==true){
                 System.out.println("match nul serrez vous la main");
             }
@@ -191,6 +195,18 @@ public class Partie {
                 System.out.println("Cette colonne est pleine ! Ou voulez vous placer votre jeton ? ");
                 g = sc3.nextInt()-1;
             }
+               
+            int i = 0;
+            int z = 0;
+            while (GrilleJeu.celluleOccupee(i, g)==true){
+                z = i;
+                i++;
+            }
+            if (GrilleJeu.Cellules[z][g].presenceTrouNoir() == true){
+                GrilleJeu.Cellules[z][g].activerTrouNoir();
+                GrilleJeu.Cellules[z][g] = null;
+            }
+            
             Jeton JetonCourant = new Jeton(c);
 
             GrilleJeu.ajouterJetonDansColonne(JetonCourant, g);
