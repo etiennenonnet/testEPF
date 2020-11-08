@@ -56,14 +56,14 @@ public class Partie {
             int a = ligne.nextInt(5);
             Random colonne = new Random();
             int b = colonne.nextInt(6);
-            if (GrilleJeu.Cellules[a][b].presenceTrouNoir() == false){
+            if (GrilleJeu.Cellules[a][b].presenceTrouNoir() == false){//s'il n'y a pas de trou noir, en place un
                 GrilleJeu.placerTrouNoir(a ,b);//place 5 trous noirs aleatoirement sur la gille
                 if (m>2){
-                    if (GrilleJeu.Cellules[a][b].presenceDesintegrateur() == false){
+                    if (GrilleJeu.Cellules[a][b].presenceDesintegrateur() == false){//s'il n'y a pas de desintegrateur, en place un 
                         GrilleJeu.placerDesintegrateur(a ,b);//place 2 desintegrateurs derriere les trous noirs (insvisible)
                     }
                 }
-                m++;
+                m++;//incrémente lorsque les trous noirs sont bien places a des endroits differents
             }
         }
         int q = 0;
@@ -72,9 +72,9 @@ public class Partie {
             int a = ligne.nextInt(5);
             Random colonne = new Random();
             int b = colonne.nextInt(6);
-            if (GrilleJeu.Cellules[a][b].presenceDesintegrateur() == false){
+            if (GrilleJeu.Cellules[a][b].presenceDesintegrateur() == false){//s'il n'y a pas de desintegrateur, en place un 
                         GrilleJeu.placerDesintegrateur(a ,b);//place les 3 autres desintegrateurs sur la grille (visible)
-                        q++;
+                        q++;//incrémente lorsque les desintegrateurs sont bien places a des endroits differents
                     }
         }
         return GrilleJeu;  
@@ -83,12 +83,12 @@ public class Partie {
     public static int choix(){
         // On demande à l'utilisateur de choisir entre recuperer un jeton ou jouer.
         int rep;
-        Scanner sc = new Scanner (System.in);
+        Scanner sc = new Scanner (System.in);//demande a l'utilisateur de faire un choix
         System.out.println("Saisissez le nombre correspondant a votre choix :");
         System.out.println("1) Jouer un jeton");
         System.out.println("2) Recuperer un jeton");
         rep = sc.nextInt();
-        return rep;
+        return rep;//retourne le choix de l'utilisateur
     }
     
     public void debuterPartie(){
@@ -100,8 +100,8 @@ public class Partie {
         Scanner sc = new Scanner (System.in);
         System.out.println("Entrer le nom du premier joueur : ");
         x = sc.next();
-        Joueur Joueur1 = new Joueur(x);
-        ListeJoueurs[0] = Joueur1;
+        Joueur Joueur1 = new Joueur(x);// attribut le nom du joueur au Joueur1
+        ListeJoueurs[0] = Joueur1;//ListeJoueurs[0] est represente par le Joueur1
         //System.out.println("Le Joueur1 s'appelle : "+Joueur1.Nom+"\n");
         
         String y;
@@ -113,8 +113,8 @@ public class Partie {
         //System.out.println("Le Joueur2 s'appelle : "+Joueur2.Nom+"\n");
         attribuerCouleursAuxJoueurs();
         
-        GrilleJeu.afficherGrilleSurConsole();
-        Random couleur = new Random();
+        GrilleJeu.afficherGrilleSurConsole();// permet d'affciher la grille
+        Random couleur = new Random();//permet de choisir une couleur au hasard pour decider de qui commence
         int o = couleur.nextInt(2);
         String c;
         if(o==1){
@@ -139,11 +139,11 @@ public class Partie {
         
         int i = 0;
             int z = 0;
-            while (GrilleJeu.celluleOccupee(i, g)==true){
+            while (GrilleJeu.celluleOccupee(i, g)==true){//ca je vais le changer je commente pas 
                 z = i;
                 i++;
             }
-            if (GrilleJeu.Cellules[z][g].presenceTrouNoir() == true){
+            if (GrilleJeu.Cellules[z][g].presenceTrouNoir() == true){//permet d'activer le trou noir lorsque l'on place un jeton dessus
                 System.out.println ("Oh mince, votre jeton a disparu dans un trou noir!");
                 GrilleJeu.Cellules[z][g].activerTrouNoir();
             }
@@ -157,7 +157,7 @@ public class Partie {
         while(GrilleJeu.etreGagnantePourJoueur(Joueur1)==false & GrilleJeu.etreGagnantePourJoueur(Joueur2)==false){//tant que personne ne gagne
             //si la premiere couleur a jouer etait le rouge la suivant sera le jaune et ainsi de suite
             String p;
-            if ("jaune".equals(c)){
+            if ("jaune".equals(c)){//permet d'afficher le nom du joueur en fonction de la couleur qui doit jouer 
                 c="rouge";
                 if(ListeJoueurs[0].Couleur.equals(c)){
                     p = Joueur1.Nom;
@@ -185,7 +185,7 @@ public class Partie {
                 
                 int j = 0;
                 int h = 0;
-                while (GrilleJeu.celluleOccupee(j, g)==true){
+                while (GrilleJeu.celluleOccupee(j, g)==true){// je vais changer aussi
                     h = j;
                     j++;
                 }
