@@ -56,9 +56,9 @@ public class Partie {
         int m = 0;
         while (m<5){
             Random ligne = new Random();
-            int a = ligne.nextInt(5);
+            int a = ligne.nextInt(6);
             Random colonne = new Random();
-            int b = colonne.nextInt(6);
+            int b = colonne.nextInt(7);
             if (GrilleJeu.Cellules[a][b].presenceTrouNoir() == false){//s'il n'y a pas de trou noir, en place un
                 GrilleJeu.placerTrouNoir(a ,b);//place 5 trous noirs aleatoirement sur la gille
                 if (m>2){
@@ -72,9 +72,9 @@ public class Partie {
         int q = 0;
         while (q<3){
             Random ligne = new Random();
-            int a = ligne.nextInt(5);
+            int a = ligne.nextInt(6);
             Random colonne = new Random();
-            int b = colonne.nextInt(6);
+            int b = colonne.nextInt(7);
             if (GrilleJeu.Cellules[a][b].presenceDesintegrateur() == false){//s'il n'y a pas de desintegrateur, en place un 
                         GrilleJeu.placerDesintegrateur(a ,b);//place les 3 autres desintegrateurs sur la grille (visible)
                         q++;//incrémente lorsque les desintegrateurs sont bien places a des endroits differents
@@ -272,8 +272,12 @@ public class Partie {
                     int b;
                     System.out.println("Veuiller indiquer la colonne correspondante :");
                     b = colonne.nextInt();//colonne correspondant au jeton a desintegrer
-                    
-                    if (joueurCourant.Couleur.equals(GrilleJeu.lireCouleurDuJeton(a,b))){//si la couleur du jeton a desintegrer est la meme que celle du joueur:
+                    String v = "rouge";
+                    if (c.equals(v)){
+                        v="jaune";    
+                    }
+                    Jeton J = new Jeton(v);
+                    if (J.Couleur.equals(GrilleJeu.lireCouleurDuJeton(a,b))){//si la couleur du jeton a desintegrer est la meme que celle du joueur:
                         System.out.println("Tu ne peux pas desintegrer ton propre jeton!");
                     }
                     else{//si la couleur est differente
