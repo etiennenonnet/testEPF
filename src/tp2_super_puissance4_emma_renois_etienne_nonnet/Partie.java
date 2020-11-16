@@ -317,9 +317,9 @@ public class Partie {
                 }
             }
             
-            if (GrilleJeu.etreRemplie()==true){//si la grille est remplie et qu'il n'y a pas de gagnant, match nul, fin de la partie
-                System.out.println("match nul serrez vous la main");
-            }
+            //if (GrilleJeu.etreRemplie()==true){//si la grille est remplie et qu'il n'y a pas de gagnant, match nul, fin de la partie
+            //    System.out.println("match nul serrez vous la main");
+            //}
             while (GrilleJeu.colonneRemplie(g)==true){//si la colonne est deja rempli, on ne peut pas y mettre un jeton
                 System.out.println("Cette colonne est pleine ! Ou voulez vous placer votre jeton ? ");
                 g = sc3.nextInt()-1;
